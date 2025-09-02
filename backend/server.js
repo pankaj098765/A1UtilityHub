@@ -4,6 +4,7 @@ import fetch from "node-fetch";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
+import cors from "cors"; // ✅ CORS import
 
 dotenv.config(); // 👈 .env load sabse pehle
 
@@ -14,6 +15,12 @@ if (!process.env.GEMINI_API_KEY) {
 
 const app = express();
 app.use(express.json());
+
+// 👇 CORS middleware (Netlify frontend allow)
+app.use(cors({
+  origin: "https://your-frontend-site.netlify.app", // replace with your Netlify URL
+  credentials: true
+}));
 
 // Resolve __dirname (ESM)
 const __filename = fileURLToPath(import.meta.url);
@@ -65,3 +72,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
+
+
