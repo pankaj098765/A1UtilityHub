@@ -18,7 +18,7 @@ app.use(express.json());
 
 // 👇 CORS middleware (Netlify frontend allow)
 app.use(cors({
-  origin: "https://your-frontend-site.netlify.app", // replace with your Netlify URL
+  origin: "https://a1utilityhub.netlify.app", // replace with your Netlify URL
   credentials: true
 }));
 
@@ -72,5 +72,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
+
 
 
