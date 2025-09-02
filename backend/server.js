@@ -26,9 +26,6 @@ app.use(cors({
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 🔹 Serve the frontend folder at /
-app.use(express.static(path.join(__dirname, "../frontend")));
-
 // 🔹 Health check
 app.get("/health", (_req, res) => res.json({ ok: true }));
 
@@ -63,15 +60,7 @@ app.post("/api/prompt", async (req, res) => {
   }
 });
 
-// 🔹 SPA fallback: anything else -> index.html
-app.get("*", (_req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/index.html"));
-});
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
-
-
-
